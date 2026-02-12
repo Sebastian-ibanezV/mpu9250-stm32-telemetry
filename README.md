@@ -50,3 +50,20 @@ Pull-up resistors: 4.7kΩ recommended to 3.3V.
 ## Telemetry Format
 
 t_ms,ax,ay,az,gx,gy,gz,acc_ok
+
+## Quick Start
+
+### Firmware
+- Board: STM32F411 Blackpill
+- I2C1: PB6=SCL, PB7=SDA (400 kHz) or any I2C pin.
+- UART2: 115200 baud
+
+Flash the firmware and open a serial monitor.
+You should see the CSV header:
+`t_ms,ax,ay,az,gx,gy,gz,acc_ok`
+
+### Python Visualizer
+```bash
+pip install -r tools/python-visualizer/requirements.txt
+python tools/python-visualizer/serial_plotter_robust.py COM7
+
