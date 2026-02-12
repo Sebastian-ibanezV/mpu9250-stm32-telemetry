@@ -90,7 +90,6 @@ int main(void)
   HAL_Delay(200);
   uart_print("Boot...\r\n");
 
-  // PWM (lo dejo tal cual lo tenías; no afecta IMU)
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
@@ -101,7 +100,6 @@ int main(void)
   __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_3, 1000);
   __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1000);
 
-  // Init IMU (driver mejorado: requiere pasarle &mpu)
   MPU_Status st = MPU9250_Init(&hi2c1, &mpu);
   snprintf(txbuf, sizeof(txbuf),
            "MPU init st=%u who=0x%02X addr=0x%02X\r\n",
@@ -146,7 +144,7 @@ int main(void)
                (unsigned)mpu.accel_sanity_ok);
       uart_print(txbuf);
     } else {
-      // Error line (útil para debug sin romper el parser del Python si lo filtras)
+      // Error line
       snprintf(txbuf, sizeof(txbuf), "err,%lu,%u\r\n",
                (unsigned long)HAL_GetTick(), (unsigned)r);
       uart_print(txbuf);
