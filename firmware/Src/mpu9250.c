@@ -12,7 +12,7 @@
 #define REG_PWR_MGMT_1     0x6B
 #define REG_WHO_AM_I       0x75
 
-/* ---- I2C addresses (8-bit for HAL) ---- */
+/* ---- I2C addresses (8-bit for hal) ---- */
 #define MPU_ADDR_0x68      (0x68 << 1) // 0xD0
 #define MPU_ADDR_0x69      (0x69 << 1) // 0xD2
 
@@ -84,7 +84,7 @@ static uint8_t autodetect_addr(I2C_HandleTypeDef *hi2c, uint8_t *whoami_out, uin
 {
     uint8_t who = 0;
 
-    // Try 0x68
+    // Try 0x68 (default adress)
     if (i2c_read_retry(hi2c, MPU_ADDR_0x68, REG_WHO_AM_I, &who, 1) == HAL_OK) {
         if (who == 0x71 || who == 0x70) {
             *whoami_out = who;
@@ -111,7 +111,7 @@ MPU_Status MPU9250_Init(I2C_HandleTypeDef *hi2c, MPU9250_t *mpu)
     if (!hi2c || !mpu) return MPU_ERR_BAD_ARG;
     memset(mpu, 0, sizeof(*mpu));
 
-    // Autodetect address + WHOAMI
+    // Autodetect address + whoimi
     uint8_t who = 0, addr = 0;
     if (!autodetect_addr(hi2c, &who, &addr)) return MPU_ERR_WHOAMI;
     mpu->whoami = who;
