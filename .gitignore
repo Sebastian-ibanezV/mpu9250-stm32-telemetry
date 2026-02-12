@@ -1,0 +1,66 @@
+# =========================
+# Keil uVision
+# =========================
+Objects/
+Listings/
+*.axf
+*.elf
+*.hex
+*.bin
+*.map
+*.o
+*.d
+*.crf
+
+*.uvoptx
+*.uvguix.*
+*.uvgui.*
+*.scvd
+*.bak
+*.dep
+
+*.flm
+*.dbgconf
+*.ini
+
+# ARM Compiler temp
+*.sct~
+*.lnp
+*.iex
+*.htm
+*.plg
+
+# =========================
+# STM32 / IDE leftovers
+# =========================
+*.ioc
+*.launch
+.settings/
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env/
+
+# =========================
+# OS
+# =========================
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# =========================
+# VSCode
+# =========================
+.vscode/
+
+# =========================
+# Generic build folders
+# =========================
+build/
+Debug/
+Release/
